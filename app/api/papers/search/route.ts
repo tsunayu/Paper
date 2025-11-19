@@ -41,7 +41,10 @@ export async function POST(request: NextRequest) {
         }
       } catch (aiError) {
         // If AI validation fails, log but continue with search
-        console.warn('AI query validation failed, proceeding with search:', aiError);
+        console.error('AI query validation failed, proceeding with search:', aiError);
+        if (aiError instanceof Error) {
+          console.error('Error details:', aiError.message, aiError.stack);
+        }
       }
     }
 
@@ -57,6 +60,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(response);
   } catch (error) {
     console.error('Error in /api/papers/search:', error);
+    if (error instanceof Error) {
+      console.error('Error stack:', error.stack);
+    }
 
     const response: PaperSearchResponse = {
       status: 'error',

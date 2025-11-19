@@ -27,6 +27,9 @@ export async function validateSearchQuery(query: string): Promise<{
   }
 
   try {
+    const MODEL_NAME = 'claude-sonnet-4-5-20250929';
+    console.log('[validateSearchQuery] Using model:', MODEL_NAME);
+
     const prompt = `You are an expert assistant that evaluates whether an academic paper search query is specific enough. The query can be in any language (English, Japanese, etc.).
 
 Given the following search query, determine if it is sufficiently specific for finding relevant academic papers:
@@ -53,7 +56,7 @@ If the query is too vague, provide 2-3 specific suggestions for clarification in
 Keep your response concise and actionable. Accept queries in any language but respond in English.`;
 
     const message = await client.messages.create({
-      model: 'claude-sonnet-4-5-20250929',
+      model: MODEL_NAME,
       max_tokens: 500,
       messages: [
         {
@@ -97,6 +100,9 @@ export async function summarizePaper(params: {
   }
 
   try {
+    const MODEL_NAME = 'claude-sonnet-4-5-20250929';
+    console.log('[summarizePaper] Using model:', MODEL_NAME);
+
     const { title, authors, abstract, year } = params;
 
     const prompt = `You are an expert research assistant. Generate a clear, detailed summary of the following academic paper. The paper information may be in English, Japanese, or other languages.
@@ -118,7 +124,7 @@ Please provide a comprehensive summary in English (250-350 words) that includes:
 Write in clear, accessible English suitable for graduate students and researchers. Be concise but thorough. If the paper information is in a non-English language, translate the key concepts to English in your summary.`;
 
     const message = await client.messages.create({
-      model: 'claude-sonnet-4-5-20250929',
+      model: MODEL_NAME,
       max_tokens: 1000,
       messages: [
         {
