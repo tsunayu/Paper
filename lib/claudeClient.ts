@@ -53,7 +53,7 @@ If the query is too vague, provide 2-3 specific suggestions for clarification in
 Keep your response concise and actionable. Accept queries in any language but respond in English.`;
 
     const message = await client.messages.create({
-      model: 'claude-3-5-sonnet-20240620',
+      model: 'claude-sonnet-4-5-20250929',
       max_tokens: 500,
       messages: [
         {
@@ -118,7 +118,7 @@ Please provide a comprehensive summary in English (250-350 words) that includes:
 Write in clear, accessible English suitable for graduate students and researchers. Be concise but thorough. If the paper information is in a non-English language, translate the key concepts to English in your summary.`;
 
     const message = await client.messages.create({
-      model: 'claude-3-5-sonnet-20240620',
+      model: 'claude-sonnet-4-5-20250929',
       max_tokens: 1000,
       messages: [
         {
