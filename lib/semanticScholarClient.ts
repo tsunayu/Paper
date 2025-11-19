@@ -55,6 +55,9 @@ export async function searchPapers(
     });
 
     if (!response.ok) {
+      if (response.status === 429) {
+        throw new Error('Rate limit exceeded. Semantic Scholar API allows 100 requests per 5 minutes. Please wait a few minutes before searching again.');
+      }
       throw new Error(`Semantic Scholar API error: ${response.status} ${response.statusText}`);
     }
 
@@ -125,6 +128,9 @@ export async function getPaperById(paperId: string): Promise<SearchResultPaper |
     if (!response.ok) {
       if (response.status === 404) {
         return null;
+      }
+      if (response.status === 429) {
+        throw new Error('Rate limit exceeded. Semantic Scholar API allows 100 requests per 5 minutes. Please wait a few minutes before searching again.');
       }
       throw new Error(`Semantic Scholar API error: ${response.status} ${response.statusText}`);
     }
