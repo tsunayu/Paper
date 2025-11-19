@@ -66,29 +66,27 @@ export function PaperCard({ paper, isFavorite = false, onToggleFavorite }: Paper
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
               <CardTitle className="text-xl mb-2">{paper.title}</CardTitle>
-              <CardDescription className="text-base">
-                <div className="space-y-1">
-                  <div>
-                    <span className="font-medium">Authors:</span>{" "}
-                    {paper.authors.length > 0 ? paper.authors.join(", ") : "Unknown"}
-                  </div>
-                  {paper.year && (
-                    <div>
-                      <span className="font-medium">Year:</span> {paper.year}
-                    </div>
-                  )}
-                  {paper.venue && (
-                    <div>
-                      <span className="font-medium">Venue:</span> {paper.venue}
-                    </div>
-                  )}
-                  {paper.citationCount !== undefined && (
-                    <div>
-                      <span className="font-medium">Citations:</span> {paper.citationCount}
-                    </div>
-                  )}
+              <div className="text-sm text-muted-foreground space-y-1">
+                <div>
+                  <span className="font-medium">Authors:</span>{" "}
+                  {paper.authors.length > 0 ? paper.authors.join(", ") : "Unknown"}
                 </div>
-              </CardDescription>
+                {paper.year && (
+                  <div>
+                    <span className="font-medium">Year:</span> {paper.year}
+                  </div>
+                )}
+                {paper.venue && (
+                  <div>
+                    <span className="font-medium">Venue:</span> {paper.venue}
+                  </div>
+                )}
+                {paper.citationCount !== undefined && (
+                  <div>
+                    <span className="font-medium">Citations:</span> {paper.citationCount}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Action buttons */}
