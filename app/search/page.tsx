@@ -98,14 +98,14 @@ export default function SearchPage() {
             Search Academic Papers
           </h1>
           <p className="text-gray-600 text-center mb-6">
-            Search across millions of research papers from Semantic Scholar
+            Search across millions of research papers from Semantic Scholar (English & Japanese supported)
           </p>
 
           {/* Search form */}
           <form onSubmit={handleSearch} className="flex gap-2">
             <Input
               type="text"
-              placeholder="Search papers by keyword, topic, or author..."
+              placeholder="Search papers... (e.g., 'machine learning' or '機械学習')"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="flex-1 h-12 text-base"

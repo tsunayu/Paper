@@ -15,6 +15,9 @@ export default function Home() {
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Search across global research papers with AI-powered insights.
             Discover, summarize, and save your favorite academic papers.
+            <span className="block mt-2 text-base text-gray-500">
+              🌐 English & Japanese queries supported
+            </span>
           </p>
           <Link href="/search">
             <Button size="lg" className="gap-2">
@@ -33,7 +36,7 @@ export default function Home() {
               </div>
               <CardTitle className="text-xl">Smart Search</CardTitle>
               <CardDescription>
-                Search across millions of academic papers with AI-powered query validation
+                Search across millions of academic papers with AI-powered query validation. Supports English and Japanese queries.
               </CardDescription>
             </CardHeader>
           </Card>

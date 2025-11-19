@@ -27,33 +27,33 @@ export async function validateSearchQuery(query: string): Promise<{
   }
 
   try {
-    const prompt = `You are an expert assistant that evaluates whether an academic paper search query is specific enough.
+    const prompt = `You are an expert assistant that evaluates whether an academic paper search query is specific enough. The query can be in any language (English, Japanese, etc.).
 
 Given the following search query, determine if it is sufficiently specific for finding relevant academic papers:
 
 Query: "${query}"
 
-Respond in the following JSON format:
+Respond in the following JSON format (always use English for the response):
 {
   "isValid": true/false,
-  "message": "brief explanation",
-  "suggestions": ["suggestion 1", "suggestion 2", "suggestion 3"]
+  "message": "brief explanation in English",
+  "suggestions": ["suggestion 1 in English", "suggestion 2 in English", "suggestion 3 in English"]
 }
 
 A query is valid if it:
 - Contains specific technical terms, research areas, or concepts
 - Has clear research direction (e.g., methods, applications, domains)
-- Is not overly broad (e.g., just "AI" or "physics")
+- Is not overly broad (e.g., just "AI", "機械学習", "physics", or "物理学")
 
-If the query is too vague, provide 2-3 specific suggestions for clarification, such as:
+If the query is too vague, provide 2-3 specific suggestions for clarification in English, such as:
 - Specify the domain or subfield
 - Add methodological constraints
 - Include time range or specific aspects
 
-Keep your response concise and actionable.`;
+Keep your response concise and actionable. Accept queries in any language but respond in English.`;
 
     const message = await client.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-3-5-sonnet-20240620',
       max_tokens: 500,
       messages: [
         {
@@ -99,7 +99,7 @@ export async function summarizePaper(params: {
   try {
     const { title, authors, abstract, year } = params;
 
-    const prompt = `You are an expert research assistant. Generate a clear, detailed summary of the following academic paper.
+    const prompt = `You are an expert research assistant. Generate a clear, detailed summary of the following academic paper. The paper information may be in English, Japanese, or other languages.
 
 Paper Information:
 - Title: ${title}
@@ -107,7 +107,7 @@ Paper Information:
 ${year ? `- Year: ${year}` : ''}
 ${abstract ? `- Abstract: ${abstract}` : ''}
 
-Please provide a comprehensive summary (250-350 words) that includes:
+Please provide a comprehensive summary in English (250-350 words) that includes:
 
 1. **Research Problem/Question**: What problem does this paper address?
 2. **Methodology/Approach**: What methods or techniques do the authors use?
@@ -115,10 +115,10 @@ Please provide a comprehensive summary (250-350 words) that includes:
 4. **Significance/Impact**: Why is this work important? What are its implications?
 5. **Limitations** (if identifiable from the abstract): What are potential constraints or areas for future work?
 
-Write in clear, accessible language suitable for graduate students and researchers. Be concise but thorough.`;
+Write in clear, accessible English suitable for graduate students and researchers. Be concise but thorough. If the paper information is in a non-English language, translate the key concepts to English in your summary.`;
 
     const message = await client.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-3-5-sonnet-20240620',
       max_tokens: 1000,
       messages: [
         {
